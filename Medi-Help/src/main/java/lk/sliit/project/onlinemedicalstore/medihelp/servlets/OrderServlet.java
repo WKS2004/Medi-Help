@@ -6,7 +6,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lk.sliit.project.onlinemedicalstore.medihelp.models.Order;
-import lk.sliit.project.onlinemedicalstore.medihelp.models.OrderQueueProcessor;
 
 import java.io.IOException;
 import java.util.Arrays;
