@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 
-class OrderQueueProcessor {
+public class OrderQueueProcessor {
     private final LinkedBlockingQueue<Order> orderQueue = new LinkedBlockingQueue<>();
     private final String filePath = "orders.txt";
 
