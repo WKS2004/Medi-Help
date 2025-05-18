@@ -31,43 +31,22 @@ public class UserServices {
     public static User loginUser(String usernameOrEmail, String password) {
         List<User> users = getAllUsers();
         for (User user : users) {
-            if (((user.getUsername().equals(usernameOrEmail)) || (user.getEmail().equals(usernameOrEmail))) && (user.getPassword().equals(password))) {
+            if ( ( (user.getUsername().equals(usernameOrEmail)) || (user.getEmail().equals(usernameOrEmail)) ) && (user.getPassword().equals(password)) ) {
                 return user;
             }
         }
         return null;
     }
 
-    public static boolean updateDisplayName(String uID, String newDisplayName) {
+    public static boolean updateUser(String username, User updatingUser) {
         List<User> users = getAllUsers();
         boolean updatedStatus = false;
 
+        FileHandler.ensureFileExists(FILE_PATH);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true)))  {
             for (User user : users) {
-                if (user.getUsername().equals(uID)) {
-                    user.setDisplayName(newDisplayName);
-                    writer.write(user.toString());
-                    writer.newLine();
-                    updatedStatus = true;
-                }
-            }
-        }
-        catch (IOException exception) {
-            System.out.println("Error");
-        }
-        return updatedStatus;
-    }
-
-    public static boolean updateUserPassword(String uID, String oldPassword, String newPassword, String confirmPassword) {
-        List<User> users = getAllUsers();
-        boolean updatedStatus = false;
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
-            for (User user : users) {
-                if (user.getUsername().equals(uID)) {
-                    if (user.getPassword().equals(oldPassword) && (newPassword.equals(confirmPassword))) {
-                        user.setPassword(newPassword);
-                    }
+                if (user.getUsername().equals(username)) {
+                    user = updatingUser;
                     writer.write(user.toString());
                     writer.newLine();
                     updatedStatus = true;
@@ -85,7 +64,8 @@ public class UserServices {
         boolean removedStatus = users.removeIf(user -> user.getUsername().equals(username));
 
         if (removedStatus) {
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
+            FileHandler.ensureFileExists(FILE_PATH);
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
                 for (User user : users) {
                     writer.write(user.toString());
                     writer.newLine();
