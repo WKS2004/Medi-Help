@@ -16,11 +16,11 @@ public class ProfileServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
-        if (user != null) {
-            switch (user.getRole()) {
+        User loggedUser = (User) session.getAttribute("loggedUser");
+        if (loggedUser != null) {
+            switch (loggedUser.getRole()) {
                 case "customer":
                     request.getRequestDispatcher("/user/customerProfile.jsp").forward(request, response);
                     break;

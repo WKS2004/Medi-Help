@@ -20,12 +20,12 @@ public class LoginServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher("/user/login.jsp").forward(request, response);
     }
 
     @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String basePath = getServletContext().getRealPath("/data/");
         AppConfig.getInstance().setBasePath(basePath);
 
@@ -37,10 +37,10 @@ public class LoginServlet extends HttpServlet {
         if (user != null) {
             HttpSession session = request.getSession(true);
             session.setAttribute("loggedUser", user);
-            response.sendRedirect("/profile");
+            response.sendRedirect(request.getContextPath() + "/profile");
         }
         else {
-            request.getRequestDispatcher("/user/login.jsp").forward(request, response);
+            response.sendRedirect(request.getContextPath() + "/login?error=UserDoesNotExist");
         }
     }
 }
