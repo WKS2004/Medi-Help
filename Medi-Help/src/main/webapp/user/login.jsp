@@ -24,10 +24,9 @@
 
       <!-- Email Input -->
       <div class="relative w-full">
-        <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
+        <label for="usernameOrEmail" class="block text-sm/6 font-medium text-gray-900">Username Or Email address</label>
         <div class="mt-2">
-          <input type="email" name="email" id="email" autocomplete="email" onkeyup="checkInputs()" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6">
-          <span id="email_validationMessage" class="absolute text-red-500 text-sm hidden"></span>
+          <input type="email" name="usernameOrEmail" id="usernameOrEmail" autocomplete="email" onkeyup="checkInputs()" required class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:outline-indigo-600 sm:text-sm/6">
           <img id="emailTick" class="absolute right-3 top-10 hidden w-5 h-5" src="${pageContext.request.contextPath}/assets/login-and-register/tick.png" alt="Email Valid"/>
         </div>
       </div>
