@@ -63,7 +63,7 @@ public class Review {
 
     public static Review toReviewFromText(String data) {
         String[] parts = data.split("\\|\\|");
-        if (parts.length < 4) {
+        if (parts.length < 5) {
             throw new IllegalArgumentException("Corrupted user record: " + data);
         }
 

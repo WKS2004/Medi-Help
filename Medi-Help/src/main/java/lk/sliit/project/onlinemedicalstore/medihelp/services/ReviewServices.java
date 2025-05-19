@@ -1,9 +1,7 @@
 package lk.sliit.project.onlinemedicalstore.medihelp.services;
 
 import lk.sliit.project.onlinemedicalstore.medihelp.config.AppConfig;
-import lk.sliit.project.onlinemedicalstore.medihelp.models.Product;
 import lk.sliit.project.onlinemedicalstore.medihelp.models.Review;
-import lk.sliit.project.onlinemedicalstore.medihelp.models.User;
 import lk.sliit.project.onlinemedicalstore.medihelp.utils.FileHandler;
 
 import java.io.*;
@@ -13,7 +11,7 @@ import java.util.List;
 public class ReviewServices {
     private static final String FILE_PATH = AppConfig.getInstance().getBasePath() + "/reviews.txt";
 
-    public boolean addReview(Review review) {
+    public static boolean addReview(Review review) {
         FileHandler.ensureFileExists(FILE_PATH);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
@@ -48,7 +46,7 @@ public class ReviewServices {
         return updatedStatus;
     }
 
-    public boolean removeReview(String username, String productName) {
+    public static boolean removeReview(String username, String productName) {
         List<Review> reviews = getAllReviews();
         boolean removedStatus = reviews.removeIf(review -> ( (review.getUser().getUsername().equals(username)) && (review.getProduct().getProductName().equals(productName)) ) );
 

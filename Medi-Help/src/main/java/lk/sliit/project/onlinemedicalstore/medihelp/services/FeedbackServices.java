@@ -11,7 +11,7 @@ import java.util.List;
 public class FeedbackServices {
     private static final String FILE_PATH = AppConfig.getInstance().getBasePath() + "/feedbacks.txt";
 
-    public boolean addFeedback(Feedback feedback) {
+    public static boolean addFeedback(Feedback feedback) {
         FileHandler.ensureFileExists(FILE_PATH);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true))) {
@@ -25,7 +25,7 @@ public class FeedbackServices {
         }
     }
 
-    public boolean removeFeedback(String feedbackID) {
+    public static boolean removeFeedback(String feedbackID) {
         List<Feedback> feedbacks = getAllFeedbacks();
         boolean removedStatus = feedbacks.removeIf(feedback -> (feedback.getFeedbackID().equals(feedbackID)) );
 
