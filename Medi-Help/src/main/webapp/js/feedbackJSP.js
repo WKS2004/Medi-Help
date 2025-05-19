@@ -1,52 +1,30 @@
 function validateFirstName() {
-    let firstName = document.getElementById("first-name").value;
+    let firstName = document.getElementById("firstName").value;
 
     return (firstName !== "");
 }
 
 function validateLastName() {
-    let lastName = document.getElementById("last-name").value;
+    let lastName = document.getElementById("lastName").value;
 
     return (lastName !== "");
 }
 
 function validateEmail() {
     let email = document.getElementById("email").value;
-    let email_validationMessage = document.getElementById("email_validationMessage");
-
-    let validEmailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-    let invalidEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    if (email !== "") {
-        if ((!validEmailPattern.test(email))) {
-            if (invalidEmailPattern.test(email)) {
-                email_validationMessage.textContent = "*All characters must be lowercase!";
-            } else {
-                email_validationMessage.textContent = "*Invalid Email Address!";
-            }
-            email_validationMessage.classList.remove("hidden")
-            return false;
-        } else {
-            email_validationMessage.textContent = "";
-            email_validationMessage.classList.add("hidden")
-        }
-    } else {
-        email_validationMessage.classList.add("hidden")
-        return false;
-    }
-    return true;
+    return (lastName !== "");
 }
 
 function validatePhoneNumber() {
-    let phoneNumber = document.getElementById("phone-number").value;
+    let phoneNumber = document.getElementById("phoneNumber").value;
 
     return (phoneNumber.length === 10);
 }
 
 function validateMessage() {
-    let message = document.getElementById("message").value;
+    let comment = document.getElementById("comment").value;
 
-    return (message !== "");
+    return (comment !== "");
 }
 
 
@@ -71,8 +49,22 @@ document.addEventListener("DOMContentLoaded", function () {
             agreementDot.classList.remove("translate-x-3.5");
             agreementDot.classList.add("translate-x-0");
         }
+
+        // Call validation on switch toggle
+        checkInputs();
+    });
+
+    // Attach listeners to call checkInputs
+    const inputs = ["firstName", "lastName", "email", "phoneNumber", "message"];
+    inputs.forEach(id => {
+        const input = document.getElementById(id);
+        if (input) {
+            input.addEventListener("keyup", checkInputs);
+            input.addEventListener("change", checkInputs);
+        }
     });
 });
+
 
 
 function checkInputs() {
