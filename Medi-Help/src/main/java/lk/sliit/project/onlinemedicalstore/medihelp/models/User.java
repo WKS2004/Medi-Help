@@ -90,7 +90,7 @@ public class User {
 
     public static User toUserFromText(String data) {
         String[] parts = data.split("\\|\\|");
-        if (parts.length < 7) {
+        if (parts.length < 9) {
             throw new IllegalArgumentException("Corrupted user record: " + data);
         }
         return new User(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], parts[6], parts[7], parts[8]);

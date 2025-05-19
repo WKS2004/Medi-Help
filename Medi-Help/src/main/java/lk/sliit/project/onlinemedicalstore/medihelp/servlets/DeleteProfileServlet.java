@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lk.sliit.project.onlinemedicalstore.medihelp.config.AppConfig;
 import lk.sliit.project.onlinemedicalstore.medihelp.models.User;
 import lk.sliit.project.onlinemedicalstore.medihelp.services.UserServices;
 
@@ -18,18 +19,21 @@ public class DeleteProfileServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String basePath = getServletContext().getRealPath("/data/");
+        AppConfig.getInstance().setBasePath(basePath);
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedUser");
         if (user != null) {
             switch (user.getRole()) {
                 case "customer":
-                    request.getRequestDispatcher("/user/deleteCustomerProfile.jsp").forward(request, response);
+                    request.getRequestDispatcher("/user/customerDeleteProfile.jsp").forward(request, response);
                     break;
                 case "supplier":
-                    request.getRequestDispatcher("/user/deleteSupplierProfile.jsp").forward(request, response);
+                    request.getRequestDispatcher("/user/supplierDeleteProfile.jsp").forward(request, response);
                     break;
                 case "admin":
-                    request.getRequestDispatcher("/user/deleteAdminProfile.jsp").forward(request, response);
+                    request.getRequestDispatcher("/user/adminDeleteProfile.jsp").forward(request, response);
                     break;
             }
         }
@@ -40,6 +44,9 @@ public class DeleteProfileServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String basePath = getServletContext().getRealPath("/data/");
+        AppConfig.getInstance().setBasePath(basePath);
+
         HttpSession session = request.getSession(false);
         User loggedUser = (User)(session.getAttribute("loggedUser"));
         boolean deletedStatus = UserServices.deleteUser(loggedUser.getUsername());
