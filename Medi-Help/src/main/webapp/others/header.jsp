@@ -15,10 +15,11 @@
           <span>Home</span>
         </div>
       </a>
-
-      <div class="hover:cursor-pointer px-4">
-        <span>About</span>
-      </div>
+      <a href="${pageContext.request.contextPath}/feedback">
+        <div class="hover:cursor-pointer px-4">
+          <span>Feedback</span>
+        </div>
+      </a>
 
       <button id="productsFull" class="h-10 w-20 hover:cursor-pointer px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 focus-visible:rounded-md">
         Products
@@ -62,7 +63,7 @@
       </div>
 
       <div class="flex items-center justify-between h-10 w-15">
-        <% if (session.getAttribute("user") == null) {%>
+        <% if (session.getAttribute("loggedUser") == null) {%>
         <a href="${pageContext.request.contextPath}/login" class="flex items-center justify-between px-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-500 focus-visible:rounded-md">
           <div class="h-10 w-10">
             <img src="${pageContext.request.contextPath}/assets/header/user/not-logged-in/no-user.png" alt="Login/Sign Up" class="mx-auto h-10 w-10"/>
