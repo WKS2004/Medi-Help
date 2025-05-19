@@ -2,7 +2,6 @@ package lk.sliit.project.onlinemedicalstore.medihelp.services;
 
 import lk.sliit.project.onlinemedicalstore.medihelp.config.AppConfig;
 import lk.sliit.project.onlinemedicalstore.medihelp.models.Product;
-import lk.sliit.project.onlinemedicalstore.medihelp.models.User;
 import lk.sliit.project.onlinemedicalstore.medihelp.utils.FileHandler;
 
 import java.io.*;
@@ -88,4 +87,3 @@ public class ProductServices {
         return (getAllProducts().stream().filter(product -> product.getProductName().equals(username)).findFirst().orElse(null));
     }
 }
-
