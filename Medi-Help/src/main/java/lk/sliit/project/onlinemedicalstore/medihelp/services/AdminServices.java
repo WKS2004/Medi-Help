@@ -9,12 +9,12 @@ import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 
-public class UserServices {
-    private static final String FILE_PATH = AppConfig.getInstance().getBasePath() + "/users.txt";
+public class AdminServices {
+    private static final String FILE_PATH = AppConfig.getInstance().getBasePath() + "/admins.txt";
 
-    public static boolean registerUser(User user) {
+    public static boolean addAdmin(User user) {
         FileHandler.ensureFileExists(FILE_PATH);
-        if (getUserByUsername(user.getUsername()) != null) {
+        if (getAdminByUsername(user.getUsername()) != null) {
             return false;
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true)))  {
@@ -28,26 +28,16 @@ public class UserServices {
         }
     }
 
-    public static User loginUser(String usernameOrEmail, String password) {
-        List<User> users = getAllUsers();
-        for (User user : users) {
-            if ( ( (user.getUsername().equals(usernameOrEmail)) || (user.getEmail().equals(usernameOrEmail)) ) && (user.getPassword().equals(password)) ) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public static boolean updateUser(String username, User updatingUser) {
-        List<User> users = getAllUsers();
+    public static boolean updateAdmin(String username, User updatingAdmin) {
+        List<User> admins = getAllAdmins();
         boolean updatedStatus = false;
 
         FileHandler.ensureFileExists(FILE_PATH);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true)))  {
-            for (User user : users) {
-                if (user.getUsername().equals(username)) {
-                    user = updatingUser;
-                    writer.write(user.toString());
+            for (User admin : admins) {
+                if (admin.getUsername().equals(username)) {
+                    admin = updatingAdmin;
+                    writer.write(admin.toString());
                     writer.newLine();
                     updatedStatus = true;
                 }
@@ -59,42 +49,42 @@ public class UserServices {
         return updatedStatus;
     }
 
-    public static boolean deleteUser(String username) {
-        List<User> users = getAllUsers();
-        boolean removedStatus = users.removeIf(user -> user.getUsername().equals(username));
+    public static boolean deleteAdmin(String username) {
+        List<User> admins = getAllAdmins();
+        boolean removedStatus = admins.removeIf(admin -> admin.getUsername().equals(username));
 
         if (removedStatus) {
             FileHandler.ensureFileExists(FILE_PATH);
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-                for (User user : users) {
-                    writer.write(user.toString());
+                for (User admin : admins) {
+                    writer.write(admin.toString());
                     writer.newLine();
                 }
             }
             catch (IOException exception) {
-                System.out.println("Error deleting user!");
+                System.out.println("Error deleting admin!");
             }
         }
         return removedStatus;
     }
 
-    public static List<User> getAllUsers() {
+    public static List<User> getAllAdmins() {
         FileHandler.ensureFileExists(FILE_PATH);
-        List<User> users = new ArrayList<>();
+        List<User> admins = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                users.add(User.toUserFromText(line));
+                admins.add(User.toUserFromText(line));
             }
         }
         catch (IOException exception) {
             System.out.println("Error");
         }
-        return users;
+        return admins;
     }
 
-    public static User getUserByUsername(String username) {
+    public static User getAdminByUsername(String username) {
         FileHandler.ensureFileExists(FILE_PATH);
-        return (getAllUsers().stream().filter(user -> user.getUsername().equals(username)).findFirst().orElse(null));
+        return (getAllAdmins().stream().filter(admin -> admin.getUsername().equals(username)).findFirst().orElse(null));
     }
 }
