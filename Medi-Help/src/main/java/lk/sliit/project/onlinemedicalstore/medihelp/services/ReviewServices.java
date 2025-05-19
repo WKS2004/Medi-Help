@@ -54,7 +54,7 @@ public class ReviewServices {
             FileHandler.ensureFileExists(FILE_PATH);
             for (Review review : reviews) {
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-                    writer.write(reviews.toString());
+                    writer.write(review.toString());
                     writer.newLine();
                 }
                 catch (IOException exception) {
