@@ -1,24 +1,23 @@
 package lk.sliit.project.onlinemedicalstore.medihelp.services;
 
 import lk.sliit.project.onlinemedicalstore.medihelp.config.AppConfig;
-import lk.sliit.project.onlinemedicalstore.medihelp.models.User;
+import lk.sliit.project.onlinemedicalstore.medihelp.models.Product;
 import lk.sliit.project.onlinemedicalstore.medihelp.utils.FileHandler;
 
 import java.io.*;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-public class UserServices {
-    private static final String FILE_PATH = AppConfig.getInstance().getBasePath() + "/users.txt";
+public class ProductServices {
+    private static final String FILE_PATH = AppConfig.getInstance().getBasePath() + "/products.txt";
 
-    public static boolean registerUser(User user) {
+    public static boolean addProduct(Product product) {
         FileHandler.ensureFileExists(FILE_PATH);
-        if (getUserByUsername(user.getUsername()) != null) {
+        if (getProductByProductName(product.getProductName()) != null) {
             return false;
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true)))  {
-            writer.write(user.toString());
+            writer.write(product.toString());
             writer.newLine();
             return true;
         }
@@ -28,26 +27,16 @@ public class UserServices {
         }
     }
 
-    public static User loginUser(String usernameOrEmail, String password) {
-        List<User> users = getAllUsers();
-        for (User user : users) {
-            if ( ( (user.getUsername().equals(usernameOrEmail)) || (user.getEmail().equals(usernameOrEmail)) ) && (user.getPassword().equals(password)) ) {
-                return user;
-            }
-        }
-        return null;
-    }
-
-    public static boolean updateUser(String username, User updatingUser) {
-        List<User> users = getAllUsers();
+    public static boolean updateProduct(String productName, Product updatingProduct) {
+        List<Product> products = getAllProducts();
         boolean updatedStatus = false;
 
         FileHandler.ensureFileExists(FILE_PATH);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH, true)))  {
-            for (User user : users) {
-                if (user.getUsername().equals(username)) {
-                    user = updatingUser;
-                    writer.write(user.toString());
+            for (Product product : products) {
+                if (product.getProductName().equals(productName)) {
+                    product = updatingProduct;
+                    writer.write(product.toString());
                     writer.newLine();
                     updatedStatus = true;
                 }
@@ -59,42 +48,42 @@ public class UserServices {
         return updatedStatus;
     }
 
-    public static boolean deleteUser(String username) {
-        List<User> users = getAllUsers();
-        boolean removedStatus = users.removeIf(user -> user.getUsername().equals(username));
+    public static boolean removeProduct(String productName) {
+        List<Product> products = getAllProducts();
+        boolean removedStatus = products.removeIf(product -> product.getProductName().equals(productName));
 
         if (removedStatus) {
             FileHandler.ensureFileExists(FILE_PATH);
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_PATH))) {
-                for (User user : users) {
-                    writer.write(user.toString());
+                for (Product product : products) {
+                    writer.write(product.toString());
                     writer.newLine();
                 }
             }
             catch (IOException exception) {
-                System.out.println("Error deleting user!");
+                System.out.println("Error");
             }
         }
         return removedStatus;
     }
 
-    public static List<User> getAllUsers() {
+    public static List<Product> getAllProducts() {
         FileHandler.ensureFileExists(FILE_PATH);
-        List<User> users = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                users.add(User.toUserFromText(line));
+                products.add(Product.toProductFromText(line));
             }
         }
         catch (IOException exception) {
             System.out.println("Error");
         }
-        return users;
+        return products;
     }
 
-    public static User getUserByUsername(String username) {
+    public static Product getProductByProductName(String username) {
         FileHandler.ensureFileExists(FILE_PATH);
-        return (getAllUsers().stream().filter(user -> user.getUsername().equals(username)).findFirst().orElse(null));
+        return (getAllProducts().stream().filter(product -> product.getProductName().equals(username)).findFirst().orElse(null));
     }
 }
