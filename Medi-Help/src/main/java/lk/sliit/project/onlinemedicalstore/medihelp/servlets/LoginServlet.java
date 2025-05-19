@@ -21,6 +21,9 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String basePath = getServletContext().getRealPath("/data/");
+        AppConfig.getInstance().setBasePath(basePath);
+
         request.getRequestDispatcher("/user/login.jsp").forward(request, response);
     }
 

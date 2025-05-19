@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import lk.sliit.project.onlinemedicalstore.medihelp.config.AppConfig;
 import lk.sliit.project.onlinemedicalstore.medihelp.models.User;
 import lk.sliit.project.onlinemedicalstore.medihelp.services.UserServices;
 
@@ -17,6 +18,9 @@ public class UpdateProfileServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String basePath = getServletContext().getRealPath("/data/");
+        AppConfig.getInstance().setBasePath(basePath);
+
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("loggedUser");
         if (user != null) {
@@ -38,7 +42,10 @@ public class UpdateProfileServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession(false);
+        String basePath = getServletContext().getRealPath("/data/");
+        AppConfig.getInstance().setBasePath(basePath);
+
+        HttpSession session = request.getSession(true);
         String updateAction = request.getParameter("updateAction");
         User loggedUser = (User)(session.getAttribute("loggedUser"));
 

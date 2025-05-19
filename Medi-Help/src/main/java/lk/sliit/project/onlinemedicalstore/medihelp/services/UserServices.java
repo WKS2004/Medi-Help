@@ -72,7 +72,7 @@ public class UserServices {
                 }
             }
             catch (IOException exception) {
-                System.out.println("Error");
+                System.out.println("Error deleting user!");
             }
         }
         return removedStatus;
