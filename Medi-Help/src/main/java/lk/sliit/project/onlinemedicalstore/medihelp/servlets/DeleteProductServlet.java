@@ -14,11 +14,12 @@ import lk.sliit.project.onlinemedicalstore.medihelp.services.ProductServices;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "UpdateProduct", value = "/products/update")
-public class UpdateProductServlet extends HttpServlet {
+@WebServlet(name = "DeleteProduct", value = "/products/delete")
+public class DeleteProductServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String basePath = getServletContext().getRealPath("/data/");
         AppConfig.getInstance().setBasePath(basePath);
@@ -27,12 +28,13 @@ public class UpdateProductServlet extends HttpServlet {
         User loggedUser = (User) session.getAttribute("loggedUser");
 
         if ( (loggedUser != null) && (loggedUser.getRole().equals("Admin")) ) {
-            request.getRequestDispatcher("/products/updateProducts.jsp").forward(request, response);
+            request.getRequestDispatcher("/products/deleteProducts.jsp").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/products");
         }
     }
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String basePath = getServletContext().getRealPath("/data/");
         AppConfig.getInstance().setBasePath(basePath);
@@ -41,23 +43,16 @@ public class UpdateProductServlet extends HttpServlet {
         User loggedUser = (User) session.getAttribute("loggedUser");
 
         String productName = request.getParameter("productName");
-        String productBrand = request.getParameter("productBrand");
-        String productDescription = request.getParameter("productDescription");
-        String productCategory = request.getParameter("productCategory");
-        String productImagePath = request.getParameter("productImagePath");
-        double productPrice = Double.parseDouble(request.getParameter("productPrice"));
-        int productQuantity = Integer.parseInt(request.getParameter("productQuantity"));
 
-        Product product = new Product(productName, productBrand, productDescription, productCategory, productImagePath, productPrice, productQuantity);
+        boolean updatedStatus = ProductServices.removeProduct(productName);
 
         List<Product> products = ProductServices.getAllProducts();
         session.setAttribute("products", products);
 
-        boolean updatedStatus = ProductServices.updateProduct(productName, product);
         if (updatedStatus) {
             response.sendRedirect(request.getContextPath() + "/products?updateProduct=true");
         } else {
-            response.sendRedirect(request.getContextPath() + "/products?error=ProductCouldNotBeUpdated");
+            response.sendRedirect(request.getContextPath() + "/products?error=ProductCouldNotBeDeleted");
         }
     }
 }

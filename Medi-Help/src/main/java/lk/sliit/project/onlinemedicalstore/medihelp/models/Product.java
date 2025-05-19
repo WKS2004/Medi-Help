@@ -5,19 +5,28 @@ public class Product {
     private String productBrand;
     private String productDescription;
     private String productCategory;
-    private String productType;
-    private String productImage;
+    private String productImagePath;
     private double productPrice;
     private int productQuantity;
     private final boolean productStatus;
 
-    public Product(String productName, String productBrand, String productDescription, String productCategory, String productType, String productImage, double productPrice, int productQuantity, boolean productStatus) {
+    public Product(String productName, String productBrand, String productDescription, String productCategory, String productImagePath, double productPrice, int productQuantity) {
         this.productName = productName;
         this.productBrand = productBrand;
         this.productDescription = productDescription;
         this.productCategory = productCategory;
-        this.productType = productType;
-        this.productImage = productImage;
+        this.productImagePath = productImagePath;
+        this.productPrice = productPrice;
+        this.productQuantity = productQuantity;
+        this.productStatus = (productQuantity > 0);
+    }
+
+    public Product(String productName, String productBrand, String productDescription, String productCategory, String productImagePath, double productPrice, int productQuantity, boolean productStatus) {
+        this.productName = productName;
+        this.productBrand = productBrand;
+        this.productDescription = productDescription;
+        this.productCategory = productCategory;
+        this.productImagePath = productImagePath;
         this.productPrice = productPrice;
         this.productQuantity = productQuantity;
         this.productStatus = productStatus;
@@ -39,12 +48,8 @@ public class Product {
         this.productCategory = productCategory;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType;
-    }
-
-    public void setProductImage(String productImage) {
-        this.productImage = productImage;
+    public void setProductImagePath(String productImagePath) {
+        this.productImagePath = productImagePath;
     }
 
     public void setProductPrice(double productPrice) {
@@ -71,12 +76,8 @@ public class Product {
         return productCategory;
     }
 
-    public String getProductType() {
-        return productType;
-    }
-
-    public String getProductImage() {
-        return productImage;
+    public String getProductImagePath() {
+        return productImagePath;
     }
 
     public double getProductPrice() {
@@ -93,15 +94,15 @@ public class Product {
 
     @Override
     public String toString() {
-        return (productName + "||" + productBrand + "||" + productDescription + "||" + productCategory + "||" + productType + "||" + productImage + "||" + productPrice + "||" + productQuantity + "||" + productStatus);
+        return (productName + "||" + productBrand + "||" + productDescription + "||" + productCategory + "||" + productImagePath + "||" + productPrice + "||" + productQuantity + "||" + productStatus);
     }
 
     public static Product toProductFromText(String data) {
         String[] parts = data.split("\\|\\|");
-        if (parts.length < 9) {
+        if (parts.length < 8) {
             throw new IllegalArgumentException("Corrupted user record: " + data);
         }
 
-        return new Product(parts[0], parts[1], parts[2], parts[3], parts[4], parts[5], Double.parseDouble(parts[6]), Integer.parseInt(parts[7]), Boolean.parseBoolean(parts[8]));
+        return new Product(parts[0], parts[1], parts[2], parts[3], parts[4], Double.parseDouble(parts[5]), Integer.parseInt(parts[7]), Boolean.parseBoolean(parts[8]));
     }
 }
