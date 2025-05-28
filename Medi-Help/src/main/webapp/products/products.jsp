@@ -230,15 +230,15 @@
                                     <button type="button" class="filter-toggle-button flex w-full items-center justify-between bg-white px-2 py-3 text-gray-400 hover:text-gray-500" aria-controls="filter-section-mobile-1" aria-expanded="false" data-target="filter-section-mobile-1">
                                         <span class="font-medium text-gray-900">Category</span>
                                         <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg id="icon-plus-filter-section-mobile-1" class="icon-plus size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
-                    </svg>
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg id="icon-plus-filter-section-mobile-1" class="icon-plus size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                                <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
+                                            </svg>
                                             <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg id="icon-minus-filter-section-mobile-1" class="icon-minus hidden size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"></path>
-                    </svg>
-                  </span>
+                                            <svg id="icon-minus-filter-section-mobile-1" class="icon-minus hidden size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                                <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </h3>
                                 <!-- Filter section, show/hide based on section state. -->
@@ -407,7 +407,7 @@
                 </div>
             </div>
 
-            <main class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <main id="products" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex items-baseline justify-between border-b border-gray-200 pt-24 pb-6">
                     <h1 class="text-4xl font-bold tracking-tight text-gray-900">Our Products</h1>
 
@@ -439,11 +439,8 @@
 
                                       Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
                                     -->
-                                    <a href="#" class="block px-4 py-2 text-sm font-medium text-gray-900" role="menuitem" tabindex="-1" id="menu-item-0">Most Popular</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-1">Best Rating</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-2">Newest</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-3">Price: Low to High</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-4">Price: High to Low</a>
+                                    <a href="${pageContext.request.contextPath}/products?sort=price_lowToHigh" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-3">Price: Low to High</a>
+                                    <a href="${pageContext.request.contextPath}/products?sort=price_HighToLow" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-4">Price: High to Low</a>
                                 </div>
                             </div>
                         </div>
@@ -509,56 +506,8 @@
                                     </button>
                                 </h3>
                                 <!-- Filter section, show/hide based on section state. -->
-                                <div class="pt-6" id="filter-section-0">
+                                <div class="pt-6 hidden" id="filter-section-0">
                                     <div class="space-y-4">
-                                        <div class="flex gap-3">
-                                            <div class="flex h-5 shrink-0 items-center">
-                                                <div class="group grid size-4 grid-cols-1">
-                                                    <input id="filter-color-0" name="color[]" value="white" type="checkbox" class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto">
-                                                    <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
-                                                        <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <label for="filter-color-0" class="text-sm text-gray-600">Rs.10 - Rs.50</label>
-                                        </div>
-                                        <div class="flex gap-3">
-                                            <div class="flex h-5 shrink-0 items-center">
-                                                <div class="group grid size-4 grid-cols-1">
-                                                    <input id="filter-color-1" name="color[]" value="beige" type="checkbox" class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto">
-                                                    <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
-                                                        <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <label for="filter-color-1" class="text-sm text-gray-600">Beige</label>
-                                        </div>
-                                        <div class="flex gap-3">
-                                            <div class="flex h-5 shrink-0 items-center">
-                                                <div class="group grid size-4 grid-cols-1">
-                                                    <input id="filter-color-2" name="color[]" value="blue" type="checkbox" checked class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto">
-                                                    <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
-                                                        <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <label for="filter-color-2" class="text-sm text-gray-600">Blue</label>
-                                        </div>
-                                        <div class="flex gap-3">
-                                            <div class="flex h-5 shrink-0 items-center">
-                                                <div class="group grid size-4 grid-cols-1">
-                                                    <input id="filter-color-3" name="color[]" value="brown" type="checkbox" class="col-start-1 row-start-1 appearance-none rounded-sm border border-gray-300 bg-white checked:border-indigo-600 checked:bg-indigo-600 indeterminate:border-indigo-600 indeterminate:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:checked:bg-gray-100 forced-colors:appearance-auto">
-                                                    <svg class="pointer-events-none col-start-1 row-start-1 size-3.5 self-center justify-self-center stroke-white group-has-disabled:stroke-gray-950/25" viewBox="0 0 14 14" fill="none">
-                                                        <path class="opacity-0 group-has-checked:opacity-100" d="M3 8L6 11L11 3.5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                        <path class="opacity-0 group-has-indeterminate:opacity-100" d="M3 7H11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    </svg>
-                                                </div>
-                                            </div>
-                                            <label for="filter-color-3" class="text-sm text-gray-600">Brown</label>
-                                        </div>
                                         <div class="flex gap-3">
                                             <div class="flex h-5 shrink-0 items-center">
                                                 <div class="group grid size-4 grid-cols-1">
@@ -569,7 +518,7 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <label for="filter-color-4" class="text-sm text-gray-600">Green</label>
+                                            <label for="filter-color-4" class="text-sm text-gray-600">In Stock</label>
                                         </div>
                                         <div class="flex gap-3">
                                             <div class="flex h-5 shrink-0 items-center">
@@ -581,7 +530,7 @@
                                                     </svg>
                                                 </div>
                                             </div>
-                                            <label for="filter-color-5" class="text-sm text-gray-600">Purple</label>
+                                            <label for="filter-color-5" class="text-sm text-gray-600">Out Of Stock</label>
                                         </div>
                                     </div>
                                 </div>
@@ -592,19 +541,19 @@
                                     <button type="button" class="filter-toggle-button flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-1" aria-expanded="false" data-target="filter-section-1">
                                         <span class="font-medium text-gray-900">Category</span>
                                         <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg id="icon-plus-filter-section-1" class="icon-plus size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
-                    </svg>
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg id="icon-plus-filter-section-1" class="icon-plus size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                                <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
+                                            </svg>
                                             <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg id="icon-minus-filter-section-1" class="icon-minus hidden size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"></path>
-                    </svg>
-                  </span>
+                                            <svg id="icon-minus-filter-section-1" class="icon-minus hidden size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                                <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </h3>
                                 <!-- Filter section, show/hide based on section state. -->
-                                <div class="pt-6" id="filter-section-1">
+                                <div class="pt-6 hidden" id="filter-section-1">
                                     <div class="space-y-4">
                                         <div class="flex gap-3">
                                             <div class="flex h-5 shrink-0 items-center">
@@ -675,19 +624,19 @@
                                     <button type="button" class="filter-toggle-button flex w-full items-center justify-between bg-white py-3 text-sm text-gray-400 hover:text-gray-500" aria-controls="filter-section-2" aria-expanded="false" data-target="filter-section-2">
                                         <span class="font-medium text-gray-900">Price</span>
                                         <span class="ml-6 flex items-center">
-                    <!-- Expand icon, show/hide based on section open state. -->
-                    <svg id="icon-plus-filter-section-2" class="icon-plus size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
-                    </svg>
+                                            <!-- Expand icon, show/hide based on section open state. -->
+                                            <svg id="icon-plus-filter-section-2" class="icon-plus size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                                <path d="M10.75 4.75a.75.75 0 0 0-1.5 0v4.5h-4.5a.75.75 0 0 0 0 1.5h4.5v4.5a.75.75 0 0 0 1.5 0v-4.5h4.5a.75.75 0 0 0 0-1.5h-4.5v-4.5Z"></path>
+                                            </svg>
                                             <!-- Collapse icon, show/hide based on section open state. -->
-                    <svg id="icon-minus-filter-section-2" class="icon-minus hidden size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                      <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"></path>
-                    </svg>
-                  </span>
+                                            <svg id="icon-minus-filter-section-2" class="icon-minus hidden size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                                                <path fill-rule="evenodd" d="M4 10a.75.75 0 0 1 .75-.75h10.5a.75.75 0 0 1 0 1.5H4.75A.75.75 0 0 1 4 10Z" clip-rule="evenodd"></path>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </h3>
                                 <!-- Filter section, show/hide based on section state. -->
-                                <div class="pt-6" id="filter-section-2">
+                                <div class="pt-6 hidden" id="filter-section-2">
                                     <div class="space-y-4">
                                         <div class="flex gap-3">
                                             <div class="flex h-5 shrink-0 items-center">
@@ -767,28 +716,169 @@
                         </form>
 
                         <!-- Product grid -->
-                        <div class="relative w-full lg:col-span-3">
-                            <div class="flex flex-wrap items-center transition-transform duration-700 ease-in-out w-max"></div>
-                            <!-- Your content -->
-                            <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
-                                    <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                        <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                        <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                    </svg>
-                                    <div class="relative pt-10 px-10 flex items-center justify-center">
-                                        <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                        <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                    </div>
-                                    <div class="relative text-white px-6 pb-6 mt-6">
-                                        <span class="block opacity-75 -mb-1">Personal Care</span>
-                                        <div class="flex justify-between">
-                                            <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                            <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                        <div class="relative w-full">
+                            <div class="w-max grid grid-cols-3 space-x-6 lg:space-x-10 space-y-15 lg:space-y-20">
+                                <!-- Your content -->
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
+
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+
+                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
+                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
+                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                        </svg>
+                                        <div class="relative pt-10 px-10 flex items-center justify-center">
+                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
+                                        </div>
+                                        <div class="relative text-white px-6 pb-6 mt-6">
+                                            <span class="block opacity-75 -mb-1">Personal Care</span>
+                                            <div class="flex justify-between">
+                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
+                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
 
                         </div>
 
@@ -808,7 +898,7 @@
     <%@include file="/others/footer.jsp"%>
 </footer>
 
-<script src="${pageContext.request.contextPath}/js/productsJSP.js"></script>
+<script src="${pageContext.request.contextPath}/js/productJSP.js"></script>
 
 </body>
 </html>
