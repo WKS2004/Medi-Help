@@ -1,0 +1,9 @@
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||10.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||20.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||15.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||45.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||50.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||100.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||80.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||70.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||65.0||200||true

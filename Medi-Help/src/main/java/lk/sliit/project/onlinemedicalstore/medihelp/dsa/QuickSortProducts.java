@@ -33,8 +33,8 @@ public class QuickSortProducts {
                 i++;
                 swap(products, i, j);
             }
-            swap(products, (i + 1), high);
         }
+        swap(products, (i + 1), high);
         return i + 1;
     }
 
@@ -46,8 +46,8 @@ public class QuickSortProducts {
                 i++;
                 swap(products, i, j);
             }
-            swap(products, (i + 1), high);
         }
+        swap(products, (i + 1), high);
         return i + 1;
     }
 
