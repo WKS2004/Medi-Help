@@ -7,10 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lk.sliit.project.onlinemedicalstore.medihelp.config.AppConfig;
+import lk.sliit.project.onlinemedicalstore.medihelp.dsa.QuickSortProducts;
 import lk.sliit.project.onlinemedicalstore.medihelp.models.Product;
 import lk.sliit.project.onlinemedicalstore.medihelp.services.ProductServices;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "Products", value = "/products")
@@ -25,7 +27,17 @@ public class ProductsServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
 
+        String sort = request.getParameter("sort");
+
         List<Product> products = ProductServices.getAllProducts();
+
+        if (sort == null || sort.equals("price_lowToHigh")) {
+            QuickSortProducts.quickSortByPrice_lowToHigh(products, 0, (products.size() - 1));
+        }
+        else if (sort.equals("price_highToLow")) {
+            QuickSortProducts.quickSortByPrice_highToLow(products, 0, (products.size() - 1));
+        }
+
         session.setAttribute("products", products);
         request.getRequestDispatcher("/products/products.jsp").forward(request, response);
     }

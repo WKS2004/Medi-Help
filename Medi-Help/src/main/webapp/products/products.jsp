@@ -1,3 +1,5 @@
+<%@ page import="java.util.List" %>
+<%@ page import="lk.sliit.project.onlinemedicalstore.medihelp.models.Product" %>
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html class="h-full bg-white" lang="en">
@@ -440,7 +442,7 @@
                                       Selected: "font-medium text-gray-900", Not Selected: "text-gray-500"
                                     -->
                                     <a href="${pageContext.request.contextPath}/products?sort=price_lowToHigh" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-3">Price: Low to High</a>
-                                    <a href="${pageContext.request.contextPath}/products?sort=price_HighToLow" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-4">Price: High to Low</a>
+                                    <a href="${pageContext.request.contextPath}/products?sort=price_highToLow" class="block px-4 py-2 text-sm text-gray-500" role="menuitem" tabindex="-1" id="menu-item-4">Price: High to Low</a>
                                 </div>
                             </div>
                         </div>
@@ -717,167 +719,31 @@
 
                         <!-- Product grid -->
                         <div class="relative w-full">
-                            <div class="w-max grid grid-cols-3 space-x-6 lg:space-x-10 space-y-15 lg:space-y-20">
-                                <!-- Your content -->
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
+                            <div class="w-max grid grid-cols-3 space-x-6 lg:space-x-10 space-y-25 lg:space-y-25">
+                                <%  List<Product> products = (List<Product>) session.getAttribute("products");
+                                    for (Product product : products) { %>
+                                        <!-- Your content -->
+                                        <a href="#" class="category-slide-2 flex-none w-75 h-60 px-2">
+                                            <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
+                                                <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
+                                                    <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
+                                                    <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
+                                                </svg>
+                                                <div class="relative pt-10 px-10 flex items-center justify-center">
+                                                    <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
+                                                    <img class="relative w-40" src="${pageContext.request.contextPath}/<%= product.getProductImagePath() %>" alt="">
+                                                </div>
+                                                <div class="relative text-white px-6 pb-6 mt-6">
+                                                    <span class="block opacity-75 -mb-1"><%= product.getProductCategory() %></span>
+                                                    <div class="flex justify-between">
+                                                        <span class="block font-semibold text-xl"><%= product.getProductName() %></span>
+                                                        <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. <%= product.getProductPrice() %></span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </a>
+                                        </a>
+                                <%  } %>
 
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <a href="#" class="category-slide-2 flex-none w-70 h-60 px-2">
-                                    <div class="flex-shrink-0 m-6 relative overflow-hidden bg-teal-500 rounded-lg max-w-2xs shadow-lg">
-                                        <svg class="absolute bottom-0 left-0 mb-8" viewBox="0 0 375 283" fill="none" style="transform: scale(1.5); opacity: 0.1;">
-                                            <rect x="159.52" y="175" width="152" height="152" rx="8" transform="rotate(-45 159.52 175)" fill="white"></rect>
-                                            <rect y="107.48" width="152" height="152" rx="8" transform="rotate(-45 0 107.48)" fill="white"></rect>
-                                        </svg>
-                                        <div class="relative pt-10 px-10 flex items-center justify-center">
-                                            <div class="block absolute w-48 h-48 bottom-0 left-0 -mb-24 ml-3" style="background: radial-gradient(black, transparent 60%); transform: rotate3d(0, 0, 1, 20deg) scale3d(1, 0.6, 1); opacity: 0.2;"></div>
-                                            <img class="relative w-40" src="${pageContext.request.contextPath}/assets/products/p-c/Face-mask-2-300x300.png" alt="">
-                                        </div>
-                                        <div class="relative text-white px-6 pb-6 mt-6">
-                                            <span class="block opacity-75 -mb-1">Personal Care</span>
-                                            <div class="flex justify-between">
-                                                <span class="block font-semibold text-xl">3 ply Face Mask</span>
-                                                <span class="block bg-white rounded-full text-teal-500 text-xs font-bold px-3 py-2 leading-none flex items-center">Rs. 10.00</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
                             </div>
 
                         </div>
