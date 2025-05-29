@@ -28,22 +28,18 @@ public class OrderManagementServlet extends HttpServlet {
         String statusFilter = req.getParameter("status");
         String customerName = req.getParameter("customerName");
 
-        try {
-            List<Order> orders = processor.getAllOrders();
-            if (statusFilter != null && !statusFilter.equals("All")) {
-                orders = orders.stream()
-                        .filter(order -> order.status.equals(statusFilter))
-                        .collect(Collectors.toList());
-            }
-            if (customerName != null && !customerName.isEmpty()) {
-                orders = orders.stream()
-                        .filter(order -> order.customerName.equalsIgnoreCase(customerName))
-                        .collect(Collectors.toList());
-            }
-            req.setAttribute("orders", orders);
-        } catch (IOException e) {
-            req.setAttribute("error", "Failed to load orders: " + e.getMessage());
+        List<Order> orders = processor.getAllOrders();
+        if (statusFilter != null && !statusFilter.equals("All")) {
+            orders = orders.stream()
+                    .filter(order -> order.status.equals(statusFilter))
+                    .collect(Collectors.toList());
         }
+        if (customerName != null && !customerName.isEmpty()) {
+            orders = orders.stream()
+                    .filter(order -> order.customerName.equalsIgnoreCase(customerName))
+                    .collect(Collectors.toList());
+        }
+        req.setAttribute("orders", orders);
 
         req.getRequestDispatcher("/order_management_panel.jsp").forward(req, res);
     }
@@ -63,7 +59,7 @@ public class OrderManagementServlet extends HttpServlet {
                 if (orderId == null) {
                     req.setAttribute("error", "Order ID is required.");
                 } else {
-                    processor.deleteOrder(orderId);
+                    processor.removeOrder();
                     req.setAttribute("message", "Order deleted successfully!");
                 }
             } else if ("deleteCancelled".equals(action)) {
