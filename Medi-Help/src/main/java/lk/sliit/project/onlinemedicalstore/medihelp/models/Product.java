@@ -103,6 +103,6 @@ public class Product {
             throw new IllegalArgumentException("Corrupted user record: " + data);
         }
 
-        return new Product(parts[0], parts[1], parts[2], parts[3], parts[4], Double.parseDouble(parts[5]), Integer.parseInt(parts[7]), Boolean.parseBoolean(parts[8]));
+        return new Product(parts[0], parts[1], parts[2], parts[3], parts[4], Double.parseDouble(parts[5]), Integer.parseInt(parts[6]), Boolean.parseBoolean(parts[7]));
     }
 }
