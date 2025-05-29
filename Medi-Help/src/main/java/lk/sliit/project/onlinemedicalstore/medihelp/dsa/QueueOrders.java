@@ -2,24 +2,22 @@ package lk.sliit.project.onlinemedicalstore.medihelp.dsa;
 
 import lk.sliit.project.onlinemedicalstore.medihelp.models.Order;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.ArrayList;
+import java.util.List;
 
 public class QueueOrders {
-    private final Queue<Order> ordersQueue;
-    private final int noOfOrders;
+    private final List<Order> ordersQueue;
 
-    public QueueOrders(Queue<Order> ordersQueue) {
-        this.ordersQueue = ordersQueue;
-        this.noOfOrders = this.ordersQueue.size();
+    public QueueOrders() {
+        this.ordersQueue = new ArrayList<>();
     }
 
     public boolean isEmpty() {
-        return noOfOrders == 0;
+        return ordersQueue.isEmpty();
     }
 
     public int getNoOfOrders() {
-        return noOfOrders;
+        return ordersQueue.size();
     }
 
     public void insertOrder(Order order) {
@@ -28,17 +26,25 @@ public class QueueOrders {
 
     public Order peekOrder() {
         if (isEmpty()) {
-            System.out.println("This Queue of Orders is empty! Cannot Peek Order!");
+            System.out.println("Queue is empty. Cannot peek order.");
             return null;
         }
-        return ordersQueue.peek();
+        return ordersQueue.getFirst(); // Peek the front of the queue
     }
 
     public Order removeOrder() {
         if (isEmpty()) {
-            System.out.println("This Queue of Orders is empty! Cannot Remove Order!");
+            System.out.println("Queue is empty. Cannot remove order.");
             return null;
         }
-        return ordersQueue.remove();
+        return ordersQueue.removeFirst(); // Remove from the front
+    }
+
+    public List<Order> getAllOrders() {
+        return new ArrayList<>(ordersQueue); // Return a copy to avoid direct modification
+    }
+
+    public void clearAllOrders() {
+        ordersQueue.clear();
     }
 }
