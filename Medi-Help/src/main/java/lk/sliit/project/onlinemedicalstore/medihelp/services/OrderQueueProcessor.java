@@ -1,18 +1,32 @@
 package lk.sliit.project.onlinemedicalstore.medihelp.services;
 
+import lk.sliit.project.onlinemedicalstore.medihelp.config.AppConfig;
+import lk.sliit.project.onlinemedicalstore.medihelp.dsa.QueueOrders;
 import lk.sliit.project.onlinemedicalstore.medihelp.models.Order;
 
 import java.io.*;
 import java.util.*;
-import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Collectors;
 
 public class OrderQueueProcessor {
-    private final LinkedBlockingQueue<Order> orderQueue = new LinkedBlockingQueue<>();
-    private final String filePath = "orders.txt";
+    private final QueueOrders orderQueue;
+    private final String filePath = AppConfig.getInstance().getBasePath() + "orders.txt";
+
+    public OrderQueueProcessor() {
+        this.orderQueue = new QueueOrders();
+
+        try {
+            List<Order> existingOrders = getAllOrdersFromFile();
+            for (Order order : existingOrders) {
+                orderQueue.insertOrder(order);
+            }
+        } catch (IOException e) {
+            System.out.println("Failed to load existing orders: " + e.getMessage());
+        }
+    }
 
     public void addOrder(Order order) throws IOException {
-        orderQueue.offer(order);
+        orderQueue.insertOrder(order);
         saveToFile(order);
     }
 
@@ -23,15 +37,22 @@ public class OrderQueueProcessor {
         }
     }
 
-    public List<Order> getAllOrders() throws IOException {
+    private List<Order> getAllOrdersFromFile() throws IOException {
         List<Order> orders = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+        File file = new File(filePath);
+        if (!file.exists()) return orders;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 orders.add(Order.fromString(line));
             }
         }
         return orders;
+    }
+
+    public List<Order> getAllOrders() {
+        return orderQueue.getAllOrders();
     }
 
     public List<Order> getOrdersByCustomer(String customerName) throws IOException {
@@ -57,10 +78,9 @@ public class OrderQueueProcessor {
         saveAllOrders(orders);
     }
 
-    public void deleteOrder(String orderId) throws IOException {
-        List<Order> orders = getAllOrders();
-        orders.removeIf(order -> order.orderId.equals(orderId));
-        saveAllOrders(orders);
+    public void removeOrder() throws IOException {
+        orderQueue.removeOrder();  // Removes from front
+        saveAllOrders(orderQueue.getAllOrders());
     }
 
     public void deleteCancelledOrders() throws IOException {
