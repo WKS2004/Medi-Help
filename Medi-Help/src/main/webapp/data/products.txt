@@ -1,9 +1,9 @@
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||10.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||20.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||15.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||45.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||50.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||100.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||80.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||70.0||200||true
-3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||65.0||200||true
+3 ply Face Mask||null||null||Personal Care||assets/products/p-c/Face-mask-2-300x300.png||10.0||500||true
+Siddhalepa Balm 50g||null||null||Ayurvedic Products||assets/products/p-c/Siddhalepa-Balm-50g_Carelink.jpg||850.0||100||true
+Suwadharani 50g||null||null||Ayurvedic Products||assets/products/p-c/suwadharani_Carelink.jpg||150.0||50||true
+Bio Oil 60ml||null||null||Cream & Lotion||assets/products/p-c/Bio_oil_100mg.jpg||1824.0||40||true
+Vaseline Healthy Bright 200ml||null||null||Cream & Lotion||assets/products/p-c/Healthy_bright_c_carelink.jpg||1165.0||50||true
+Novopen 4||null||null||Medical Devices||assets/products/p-c/NovaPen4.jpg||2200.0||25||true
+My Pet Grooming Shampoo 200ml||null||null||Pet Accessories||assets/products/p-c/Grooming-Shampoo_Carelink_Carelink-600x600.jpg||650.0||100||true
+NESTLE NAN 2 HMO||null||null||Baby Care||assets/products/p-c/NAN-2-600x521.png||2950.0||0||false
+METROGYL||null||null||Dental Care||assets/products/p-c/Metrogyl-Denta.jpg||627.0||17||true
